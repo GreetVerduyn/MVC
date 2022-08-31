@@ -7,6 +7,7 @@ https://symfony.com/doc/current/setup.html
 === create new project: `symfony new MVC --web-app`
 
 I will use de build-in server, so I don't have to create a vhost.
+You call it by the command : `symfony server:start`
 
 == Use the MVC
 === create a controller
@@ -20,3 +21,8 @@ a controller is usually a method inside a controller class.
 
 * This page should be reachable by adding "/about-me" to the url.
 
+== Twig
+
+* I installed the twig package with: `composer require twig`
+* to use a template, I created a template (exercise.html.twig) and I called in the method.
+`return $this->render('example.html.twig', ['name' => 'BeCode']);`
