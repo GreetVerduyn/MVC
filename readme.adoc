@@ -10,19 +10,39 @@ I will use de build-in server, so I don't have to create a vhost.
 You call it by the command : `symfony server:start`
 
 == Use the MVC
-=== create a controller
+=== create a controller, a method and a Router
 While a controller can be any PHP callable (function, method on an object, or a Closure),
 a controller is usually a method inside a controller class.
 
-* Create a symfony controller called "LearningController"
+. Create a symfony controller called "LearningController"
  bin/console make:controller
 
-* Create a method called "aboutMe"
+. Create a method called "aboutMe"
 
-* This page should be reachable by adding "/about-me" to the url.
+. This page should be reachable by adding "/about-me" to the url.
+For this, I needed Routes:
+
+==== Routes
+Routes can be configured in YAML, XML, PHP or using attributes.
+ I used attributes, so I can put the route and controller in the same place (In a controller class).
+
+
 
 == Twig
 
-* I installed the twig package with: `composer require twig`
-* to use a template, I created a template (exercise.html.twig) and I called in the method.
+. I installed the twig package with: `composer require twig`
+. to use a template, I created a template (exercise.html.twig) and I called in the method.
 `return $this->render('example.html.twig', ['name' => 'BeCode']);`
+
+
+== add functionality
+
+=== Matching HTTP Methods
+By default, routes match any HTTP verb (GET, POST, PUT, etc.) Use the methods option to restrict the verbs
+each route should respond to:
+
+
+NOTE: HTML forms only support GET and POST methods.
+If you're calling a route with a different method from an HTML form, add a hidden field called _method
+with the method to use (e.g. <input type="hidden" name="_method" value="PUT"/>).
+f you create your forms with Symfony Forms this is done automatically for you.
