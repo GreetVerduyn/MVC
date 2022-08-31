@@ -1,0 +1,22 @@
+Symfony: MVC
+
+== Install Symfony
+
+https://symfony.com/doc/current/setup.html
+
+=== create new project: `symfony new MVC --web-app`
+
+I will use de build-in server, so I don't have to create a vhost.
+
+== Use the MVC
+=== create a controller
+While a controller can be any PHP callable (function, method on an object, or a Closure),
+a controller is usually a method inside a controller class.
+
+* Create a symfony controller called "LearningController"
+ bin/console make:controller
+
+* Create a method called "aboutMe"
+
+* This page should be reachable by adding "/about-me" to the url.
+
