@@ -35,6 +35,54 @@ Routes can be configured in YAML, XML, PHP or using attributes.
 `return $this->render('example.html.twig', ['name' => 'BeCode']);`
 
 
+== extra challenge: SECURITY
+
+To get started, I installed the SecurityBundle:
+
+`composer require symfony/security-bundle`
+
+Three elements are needed:
+
+. user
+
+The easiest way to generate a user class is using the `make:user` command from the MakerBundle:
+
+ $ php bin/console make:user
+
+Any secured section of your application needs some concept of a user.
+The user provider loads users from any storage (e.g. the database) based on a "user identifier"
+(e.g. the user's email address);
+
+If your user is a Doctrine entity, (like in this exercise)
+we need to create the tables by creating and running a migration:
+https://www.doctrine-project.org/projects/doctrine-orm/en/2.12/tutorials/getting-started.html
+
+BEFORE WE START, you have to give acces to the database.
+in the .env, you have to comment the connections you don't use and adapt the one u use...
+
+  DATABASE_URL="mysql://'username':'password'@127.0.0.1:3306/'schemaname'?serverVersion=mariadb-10.4.24"
+
+
+ $ php bin/console make:migration
+
+ $ php bin/console doctrine:migrations:migrate
+
+.. I have to make a registration form, for this, I require a form validator from symfony
+
+composer require form validator
+
+Now I can run the command `php bin/console make:registration-form`
+
+Now I have a registration Form.
+
+
+
+. firewall
+
+The firewalls section of config/packages/security.yaml is the most important section.
+
+
+
 == add functionality
 
 === Matching HTTP Methods
