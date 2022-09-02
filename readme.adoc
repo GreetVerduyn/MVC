@@ -112,7 +112,14 @@ The whole process:
 Login CSRF attacks can be prevented using the same technique of adding hidden CSRF tokens into the login forms.
 The Security component already provides CSRF protection, but it needs to be configured before using it.
 
--  enable CSRF on the form login
+- enable CSRF on the form login
+- make a csrf_token() function in the Twig template (login/index.html.twig)
+
+... Logging Out
+
+- To enable logging out, the logout config parameter under the firewall needs te be activated.
+- a router for the url needs to be created
+
 
 
 
