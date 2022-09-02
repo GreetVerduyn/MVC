@@ -37,11 +37,11 @@ Routes can be configured in YAML, XML, PHP or using attributes.
 
 == extra challenge: SECURITY
 
-registrationform
-user
-login
-logout
-beveiligd pad (rollen)
+- [x] registration form
+- [x] user
+- [] login
+- [] logout
+- [] beveiligd pad (rollen)
 
 To get started, I installed the SecurityBundle:
 
@@ -86,6 +86,47 @@ Now I have a registration Form.
 . firewall
 
 The firewalls section of config/packages/security.yaml is the most important section.
+
+.. I installed a main security
+.. next step is to authenticate the users
+
+... Form login
+
+ $ php bin/console make:controller Login
+
+- adapt/specified the login-path
+- edit the login controller
+- update the template (login/index.html.twig)
+
+The whole process:
+
+- The user tries to access a resource that is protected (e.g. /admin);
+- The firewall initiates the authentication process by redirecting the user to the login form (/login);
+- The /login page renders login form via the route and controller created in this example;
+- The user submits the login form to /login;
+- The security system (i.e. the form_login authenticator) intercepts the request, checks the user's submitted credentials,
+  authenticates the user if they are correct, and sends the user back to the login form if they are not.
+
+... protect login against CSRF attacks
+
+Login CSRF attacks can be prevented using the same technique of adding hidden CSRF tokens into the login forms.
+The Security component already provides CSRF protection, but it needs to be configured before using it.
+
+-  enable CSRF on the form login
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
