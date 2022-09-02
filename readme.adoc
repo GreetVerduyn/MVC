@@ -37,6 +37,12 @@ Routes can be configured in YAML, XML, PHP or using attributes.
 
 == extra challenge: SECURITY
 
+registrationform
+user
+login
+logout
+beveiligd pad (rollen)
+
 To get started, I installed the SecurityBundle:
 
 `composer require symfony/security-bundle`

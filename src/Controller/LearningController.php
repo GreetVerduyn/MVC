@@ -17,7 +17,7 @@ class LearningController extends AbstractController
     }
 
 
-    #[Route ('/about-me')]
+    #[Route ('/about-me', name: 'app_learning_about-me')]
    public function number(): Response
     {
         return new Response(
@@ -32,7 +32,7 @@ class LearningController extends AbstractController
         );
     }
 
-    #[Route ('/homepage')]
+    #[Route ('/homepage', name: 'app_learning_homepage')]
     public function showName(): Response
     {
         $name = 'Unknown';
