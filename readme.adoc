@@ -39,9 +39,9 @@ Routes can be configured in YAML, XML, PHP or using attributes.
 
 - [x] registration form
 - [x] user
-- [] login
-- [] logout
-- [] beveiligd pad (rollen)
+- [x] login
+- [x] logout
+- [] Acces Control (roles)
 
 To get started, I installed the SecurityBundle:
 
@@ -73,7 +73,7 @@ in the .env, you have to comment the connections you don't use and adapt the one
 
  $ php bin/console doctrine:migrations:migrate
 
-.. I have to make a registration form, for this, I require a form validator from symfony
+- I have to make a registration form, for this, I require a form validator from symfony
 
 composer require form validator
 
@@ -82,19 +82,19 @@ Now I can run the command `php bin/console make:registration-form`
 Now I have a registration Form.
 
 
-
+[start=2]
 . firewall
 
 The firewalls section of config/packages/security.yaml is the most important section.
 
-.. I installed a main security
-.. next step is to authenticate the users
+-  I installed a main security
+- next step is to authenticate the users
 
-... Form login
+2.1. Form login
 
  $ php bin/console make:controller Login
 
-- adapt/specified the login-path
+adapt/specified the login-path
 - edit the login controller
 - update the template (login/index.html.twig)
 
@@ -107,7 +107,8 @@ The whole process:
 - The security system (i.e. the form_login authenticator) intercepts the request, checks the user's submitted credentials,
   authenticates the user if they are correct, and sends the user back to the login form if they are not.
 
-... protect login against CSRF attacks
+
+2.2. protect login against CSRF attacks
 
 Login CSRF attacks can be prevented using the same technique of adding hidden CSRF tokens into the login forms.
 The Security component already provides CSRF protection, but it needs to be configured before using it.
@@ -115,10 +116,31 @@ The Security component already provides CSRF protection, but it needs to be conf
 - enable CSRF on the form login
 - make a csrf_token() function in the Twig template (login/index.html.twig)
 
-... Logging Out
+
+2.3. Logging Out
 
 - To enable logging out, the logout config parameter under the firewall needs te be activated.
 - a router for the url needs to be created
+
+[start=3]
+. Access Control
+
+The process of authorization has two different sides:
+- The user receives a specific role when logging in (e.g. ROLE_ADMIN).
+- You add code so that a resource (e.g. URL, controller) requires a specific "attribute" (e.g. a role like ROLE_ADMIN)
+in order to be accessed.
+
+When a user logs in, Symfony calls the getRoles() method on your User object to determine which roles this user has.
+In the User class, the roles are an array that's stored in the database and every user
+is always given at least one role: ROLE_USER.
+
+This is a nice default, but you can do whatever you want to determine which roles a user should have. Here are a few guidelines:
+
+- Every role must start with ROLE_ (otherwise, things won't work as expected)
+- Other than the above rule, a role is just a string and you can invent what you need (e.g. ROLE_PRODUCT_ADMIN).
+
+
+
 
 
 
